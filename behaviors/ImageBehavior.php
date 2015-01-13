@@ -179,32 +179,25 @@ class ImageBehavior extends Behavior
      */
     public function getImages()
     {
-        $finder = $this->getImagesFinder();
-
-        $imageQuery = Image::find()
-            ->where($finder);
-        $imageQuery->orderBy(['isMain' => SORT_DESC, 'id' => SORT_ASC]);
-
-        $imageRecords = $imageQuery->all();
+        $query = $this->imageQuery();
+        $imageRecords = $query->all();
         if(!$imageRecords){
             return [$this->getModule()->getPlaceHolder()];
         }
+
         return $imageRecords;
     }
 
-
     /**
      * returns main model image
-     * @return array|null|ActiveRecord
+     * @return null|ActiveRecord
      */
     public function getImage()
     {
-        $finder = $this->getImagesFinder(['isMain' => 1]);
-        $imageQuery = Image::find()
-            ->where($finder);
-        $imageQuery->orderBy(['isMain' => SORT_DESC, 'id' => SORT_ASC]);
+        $query = $this->imageQuery();
+        $query->andWhere(['isMain' => true]);
+        $img = $query->one();
 
-        $img = $imageQuery->one();
         if(!$img){
             return $this->getModule()->getPlaceHolder();
         }
@@ -247,21 +240,18 @@ class ImageBehavior extends Behavior
         $img->delete();
     }
 
-    private function getImagesFinder($additionWhere = false)
+    private function imageQuery()
     {
-        $base = [
+        $query = Image::find()
+          ->where(
+          [
             'itemId' => $this->owner->id,
             'modelName' => $this->getModule()->getShortClass($this->owner)
-        ];
+          ])
+          ->orderBy(['isMain' => SORT_DESC]);
 
-        if ($additionWhere) {
-            $base = \yii\helpers\BaseArrayHelper::merge($base, $additionWhere);
-        }
-
-        return $base;
+        return $query;
     }
-
-
 
     /** Make string part of image's url
      * @return string
