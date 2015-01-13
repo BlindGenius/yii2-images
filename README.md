@@ -116,8 +116,8 @@ Installation
 4. setup module
     ```php
     'modules' => [
-            'yii2images' => [
-                'class' => 'rico\yii2images\Module',
+            'images' => [
+                'class' => 'rico\images\Module',
                 //be sure, that permissions ok 
                 //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
                 'imagesStorePath' => 'images/store', //path to origin images
@@ -134,7 +134,7 @@ Installation
         {
             return [
                 'image' => [
-                    'class' => 'rico\yii2images\behaviors\ImageBehavior',
+                    'class' => 'rico\images\behaviors\ImageBehavior',
                 ]
             ];
         }

@@ -9,7 +9,7 @@
  * override methods
  */
 
-namespace rico\yii2images\models;
+namespace rico\images\models;
 
 /**
  * TODO: check path to save and all image method for placeholder
