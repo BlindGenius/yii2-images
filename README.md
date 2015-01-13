@@ -134,7 +134,7 @@ Installation
         {
             return [
                 'image' => [
-                    'class' => 'rico\yii2images\behaviors\ImageBehave',
+                    'class' => 'rico\yii2images\behaviors\ImageBehavior',
                 ]
             ];
         }

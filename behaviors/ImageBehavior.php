@@ -20,7 +20,7 @@ use \rico\yii2images\ModuleTrait;
 
 
 
-class ImageBehave extends Behavior
+class ImageBehavior extends Behavior
 {
 
     use ModuleTrait;
