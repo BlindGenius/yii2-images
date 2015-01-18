@@ -15,6 +15,7 @@ use circledev\images\ModuleTrait;
 class ImagesController extends Controller
 {
     use ModuleTrait;
+
     public function actionIndex()
     {
         echo "Hello, man. It's ok, dont worry.";
@@ -24,7 +25,6 @@ class ImagesController extends Controller
     {
         echo "Hello, man. It's ok, dont worry.";
     }
-
 
     /**
      *

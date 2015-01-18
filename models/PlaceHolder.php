@@ -18,12 +18,10 @@ namespace circledev\images\models;
 
 class PlaceHolder extends Image
 {
-
     private $modelName = '';
     private $itemId = '';
     public $filePath = 'placeHolder.png';
     public $urlAlias = 'placeHolder';
-
 
     /*  public function getUrl($size = false){
           $url = $this->getModule()->placeHolderUrl;
