@@ -15,7 +15,7 @@ use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\helpers\BaseFileHelper;
 
-class ImageBehave extends Behavior
+class ImageBehavior extends Behavior
 {
 
     use ModuleTrait;
