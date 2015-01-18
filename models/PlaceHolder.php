@@ -15,7 +15,6 @@ namespace circledev\images\models;
  * TODO: check path to save and all image method for placeholder
  */
 
-use yii;
 
 class PlaceHolder extends Image
 {

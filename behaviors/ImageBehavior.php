@@ -8,17 +8,12 @@
 
 namespace circledev\images\behaviors;
 
+use circledev\images\models;
+use circledev\images\ModuleTrait;
 
-use rico\images\models\Image;
-
-use yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
-use rico\images\models;
 use yii\helpers\BaseFileHelper;
-use rico\images\ModuleTrait;
-
-
 
 class ImageBehave extends Behavior
 {

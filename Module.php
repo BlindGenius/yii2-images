@@ -2,10 +2,10 @@
 
 namespace circledev\images;
 
+use circledev\images\models;
 
-use rico\images\models\PlaceHolder;
-use yii;
-use rico\images\models\Image;
+use yii\base\Module as BaseModule;
+use yii\base\Exception;
 
 class Module extends \yii\base\Module
 {

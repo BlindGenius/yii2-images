@@ -9,9 +9,8 @@
 namespace circledev\images\controllers;
 
 use yii\web\Controller;
-use yii;
-use rico\images\models\Image;
-use rico\images\ModuleTrait;
+use circledev\images\models\Image;
+use circledev\images\ModuleTrait;
 
 class ImagesController extends Controller
 {

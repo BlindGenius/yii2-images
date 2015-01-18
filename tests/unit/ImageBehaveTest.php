@@ -5,13 +5,13 @@ use Yii;
 use yii\codeception\DbTestCase;
 use yii\codeception\TestCase;
 use Codeception\Util\Stub;
-use rico\yii2images\behaviors\ImageBehave;
-use rico\yii2images\models\Image;
+use circledev\images\behaviors\ImageBehave;
+use circledev\images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use org\bovigo\vfs\vfsStream;
-use rico\yii2images\controllers\ImagesController;
+use circledev\images\controllers\ImagesController;
 
 use Codeception\Util\Debug;
 

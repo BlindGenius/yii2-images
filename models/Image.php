@@ -14,13 +14,12 @@
 
 namespace circledev\images\models;
 
-use Yii;
+use circledev\images\ModuleTrait;
+
 use yii\base\Exception;
 use yii\helpers\Url;
 use yii\helpers\BaseFileHelper;
-use rico\images\ModuleTrait;
-
-
+use yii\db\ActiveRecord;
 
 class Image extends \yii\db\ActiveRecord
 {
