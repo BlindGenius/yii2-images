@@ -6,7 +6,7 @@
  * Time: 15:35
  */
 
-namespace rico\images\controllers;
+namespace circledev\images\controllers;
 
 use yii\web\Controller;
 use yii;

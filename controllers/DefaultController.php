@@ -1,6 +1,6 @@
 <?php
 
-namespace rico\images\controllers;
+namespace circledev\images\controllers;
 
 use yii\web\Controller;
 

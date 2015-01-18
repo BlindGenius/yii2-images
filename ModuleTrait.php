@@ -6,8 +6,7 @@
  * Time: 0:20
  */
 
-namespace rico\images;
-
+namespace circledev\images;
 
 use yii\base\Exception;
 

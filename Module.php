@@ -1,6 +1,6 @@
 <?php
 
-namespace rico\images;
+namespace circledev\images;
 
 
 use rico\images\models\PlaceHolder;

@@ -6,7 +6,7 @@
  * Time: 16:58
  */
 
-namespace rico\images\behaviors;
+namespace circledev\images\behaviors;
 
 
 use rico\images\models\Image;
