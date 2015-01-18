@@ -20,7 +20,7 @@ use rico\images\ModuleTrait;
 
 
 
-class ImageBehavior extends Behavior
+class ImageBehave extends Behavior
 {
 
     use ModuleTrait;
