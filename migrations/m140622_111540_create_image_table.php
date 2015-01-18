@@ -8,11 +8,11 @@ class m140622_111540_create_image_table extends \yii\db\Migration
     {
         $this->createTable('image', [
             'id' => 'pk',
-            'filePath' => 'VARCHAR(400) NOT NULL',
-            'itemId' => 'int(20) NOT NULL',
-            'isMain' => 'int(1)',
-            'modelName' => 'VARCHAR(150) NOT NULL',
-            'urlAlias' => 'VARCHAR(400) NOT NULL',
+            'file_path' => 'VARCHAR(400) NOT NULL',
+            'item_id' => 'int(11) NOT NULL',
+            'is_main' => 'tinyint(1) NOT NULL DEFAULT 0',
+            'model_name' => 'VARCHAR(150) NOT NULL',
+            'url_alias' => 'VARCHAR(400) NOT NULL',
         ]);
 
     }
