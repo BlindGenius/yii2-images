@@ -21,7 +21,7 @@ use yii\helpers\Url;
 use yii\helpers\BaseFileHelper;
 use yii\db\ActiveRecord;
 
-class Image extends \yii\db\ActiveRecord
+class Image extends ActiveRecord
 {
     use ModuleTrait;
 
@@ -102,14 +102,12 @@ class Image extends \yii\db\ActiveRecord
         return $sizes;
     }
 
-    public function getSizesWhen($sizeString){
-
+    public function getSizesWhen($sizeString)
+    {
         $size = $this->getModule()->parseSize($sizeString);
         if(!$size){
             throw new \Exception('Bad size..');
         }
-
-
 
         $sizes = $this->getSizes();
 
@@ -238,24 +236,22 @@ class Image extends \yii\db\ActiveRecord
             }
 
         return $image;
-
     }
 
 
-    public function setMain($isMain = true){
+    public function setMain($isMain = true)
+    {
         if($isMain){
             $this->is_main = 1;
         }else{
             $this->is_main = 0;
         }
-
     }
 
     protected function getSubDur()
     {
         return $this->model_name. 's/' . $this->model_name.$this->item_id;
     }
-
 
 
     /**

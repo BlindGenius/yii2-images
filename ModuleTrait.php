@@ -13,12 +13,12 @@ use yii\base\Exception;
 trait ModuleTrait
 {
     /**
-     * @var null|\rico\images\Module
+     * @var null|\circledev\images\Module
      */
     private $_module;
 
     /**
-     * @return null|\rico\images\Module
+     * @return null|\circledev\images\Module
      */
     protected function getModule()
     {
@@ -27,7 +27,7 @@ trait ModuleTrait
         }
 
         if(!$this->_module){
-            throw new Exception("\n\n\n\n\nImages module not found, may be you didn't add it to your config?\n\n\n\n");
+            throw new Exception("\n\n\n\n\nYii2 images module not found, may be you didn't add it to your config?\n\n\n\n");
         }
 
         return $this->_module;

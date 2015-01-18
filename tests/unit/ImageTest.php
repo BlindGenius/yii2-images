@@ -4,8 +4,8 @@ use yii\codeception\TestCase;
 use Codeception\Util\Debug;
 use yii\codeception\DbTestCase;
 use Codeception\Util\Stub;
-use rico\yii2images\behaviors\ImageBehave;
-use rico\yii2images\models\Image;
+use circledev\images\behaviors\ImageBehave;
+use circledev\images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -39,7 +39,7 @@ class ImageTest extends TestCase
             ],
             'modules' => [
                 'ricoStore' => [
-                    'class' => 'rico\yii2images\Module',
+                    'class' => 'circledev\images\Module',
 
                 ],
             ],

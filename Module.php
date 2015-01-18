@@ -7,7 +7,7 @@ use circledev\images\models;
 use yii\base\Module as BaseModule;
 use yii\base\Exception;
 
-class Module extends \yii\base\Module
+class Module extends BaseModule
 {
     public $imagesStorePath = '@app/web/store';
 
@@ -15,13 +15,11 @@ class Module extends \yii\base\Module
 
     public $graphicsLibrary = 'GD';
 
-    public $controllerNamespace = 'rico\images\controllers';
+    public $controllerNamespace = 'circledev\images\controllers';
 
     public $placeHolderPath;
 
     public $waterMark = false;
-
-
 
 
     public function getImage($item, $dirtyAlias)
@@ -59,13 +57,13 @@ class Module extends \yii\base\Module
 
     public function getStorePath()
     {
-        return Yii::getAlias($this->imagesStorePath);
+        return \Yii::getAlias($this->imagesStorePath);
     }
 
 
     public function getCachePath()
     {
-        return Yii::getAlias($this->imagesCachePath);
+        return \Yii::getAlias($this->imagesCachePath);
 
     }
 
@@ -126,7 +124,7 @@ class Module extends \yii\base\Module
                 'height' => intval($sizeParts[1])
             ];
         } else {
-            throw new \Exception('Something bad with size, sorry!');
+            throw new Exception('Something bad with size, sorry!');
         }
 
         return $size;
@@ -150,7 +148,6 @@ class Module extends \yii\base\Module
             $size = null;
         }
 
-
         return ['alias' => $alias, 'size' => $size];
     }
 
@@ -166,7 +163,7 @@ class Module extends \yii\base\Module
             or
             $this->imagesCachePath == '@app'
         )
-            throw new \Exception('Setup imagesStorePath and imagesCachePath images module properties!!!');
+            throw new Exception('Setup imagesStorePath and imagesCachePath images module properties!!!');
         // custom initialization code goes here
     }
 

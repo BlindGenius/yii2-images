@@ -97,7 +97,7 @@ class ImageBehave extends Behavior
 
         //If main image not exists
         if(
-            is_object($img) && get_class($img)=='rico\images\models\PlaceHolder'
+            is_object($img) && get_class($img)=='circledev\images\models\PlaceHolder'
             or
             $img == null
             or

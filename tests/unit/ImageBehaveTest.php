@@ -52,7 +52,7 @@ class ImageBehaveTest extends DbTestCase
             ],
             'modules' => [
                 'yii2images' => [
-                    'class' => 'rico\yii2images\Module',
+                    'class' => 'circledev\images\Module',
 
                 ],
             ],
@@ -169,7 +169,7 @@ class ImageBehaveTest extends DbTestCase
         //Check one image
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'rico\yii2images\models\Image');
+        $this->assertTrue(get_class($image) == 'circledev\images\models\Image');
 
         //Check several images
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
@@ -177,7 +177,7 @@ class ImageBehaveTest extends DbTestCase
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
 
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'rico\yii2images\models\Image');
+        $this->assertTrue(get_class($image) == 'circledev\images\models\Image');
 
         //Check is it first image main
         $this->assertTrue($image->isMain == 1);

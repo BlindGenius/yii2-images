@@ -11,6 +11,8 @@
 
 namespace circledev\images\models;
 
+use \yii\base\Exception;
+
 /**
  * TODO: check path to save and all image method for placeholder
  */
@@ -39,9 +41,9 @@ class PlaceHolder extends Image
     public function getPathToOrigin()
     {
 
-        $url = Yii::getAlias($this->getModule()->placeHolderPath);
+        $url = \Yii::getAlias($this->getModule()->placeHolderPath);
         if (!$url) {
-            throw new \Exception('PlaceHolder image must have path setting!!!');
+            throw new Exception('PlaceHolder image must have path setting!!!');
         }
         return $url;
     }
@@ -49,8 +51,9 @@ class PlaceHolder extends Image
     protected  function getSubDur(){
         return 'placeHolder';
     }
+
     public function setMain($isMain = true){
-        throw new yii\base\Exception('You must not set placeHolder as main image!!!');
+        throw new Exception('You must not set placeHolder as main image!!!');
     }
 
 }
