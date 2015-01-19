@@ -8,7 +8,8 @@
 
 namespace circledev\images\behaviors;
 
-use circledev\images\models;
+use circledev\images\models\Image;
+use circledev\images\models\PlaceHolder;
 use circledev\images\ModuleTrait;
 
 use yii\base\Behavior;
@@ -71,7 +72,7 @@ class ImageBehavior extends Behavior
         }
 
         if($this->modelClass === null) {
-            $image = new models\Image;
+            $image = new \circledev\images\models\Image;
         }else{
             $image = new ${$this->modelClass}();
         }
