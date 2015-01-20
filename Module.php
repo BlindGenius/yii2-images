@@ -2,8 +2,6 @@
 
 namespace circledev\images;
 
-use circledev\images\models;
-
 use yii\base\Module as BaseModule;
 use yii\base\Exception;
 
