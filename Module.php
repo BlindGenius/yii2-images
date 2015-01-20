@@ -33,11 +33,11 @@ class Module extends BaseModule
 
 
         //Lets get image
-        $image = Image::find()
+        $image = \circledev\images\models\Image::find()
             ->where([
-                'modelName' => $modelName,
-                'itemId' => $itemId,
-                'urlAlias' => $alias
+                'model_name' => $modelName,
+                'item_id' => $itemId,
+                'url_alias' => $alias
             ])
             /*     ->where('modelName = :modelName AND itemId = :itemId AND urlAlias = :alias',
                      [
