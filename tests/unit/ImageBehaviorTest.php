@@ -5,7 +5,7 @@ use Yii;
 use yii\codeception\DbTestCase;
 use yii\codeception\TestCase;
 use Codeception\Util\Stub;
-use circledev\images\behaviors\ImageBehave;
+use circledev\images\behaviors\ImageBehavior;
 use circledev\images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
@@ -15,7 +15,7 @@ use circledev\images\controllers\ImagesController;
 
 use Codeception\Util\Debug;
 
-class ImageBehaveTest extends DbTestCase
+class ImageBehaviorTest extends DbTestCase
 {
 
     use \Codeception\Specify;
@@ -68,11 +68,11 @@ class ImageBehaveTest extends DbTestCase
 
         $columns = [
             'id' => 'pk',
-            'filePath' => 'VARCHAR(400) NOT NULL',
-            'itemId' => 'int(20) NOT NULL',
-            'isMain' => 'int(1)',
-            'modelName' => 'VARCHAR(150) NOT NULL',
-            'urlAlias' => 'VARCHAR(400) NOT NULL',
+            'file_path' => 'VARCHAR(400) NOT NULL',
+            'item_id' => 'int(11) NOT NULL',
+            'is_main' => 'tinyint(1) NOT NULL DEFAULT 0',
+            'model_name' => 'VARCHAR(150) NOT NULL',
+            'url_alias' => 'VARCHAR(400) NOT NULL',
         ];
         Yii::$app->getDb()->createCommand()->createTable('image', $columns)->execute();
 
@@ -127,8 +127,8 @@ class ImageBehaveTest extends DbTestCase
 
         //Check db record
         $imageRecord = Image::find()->where([
-            'itemId' => $this->model->id,
-            'modelName' => 'ActiveRecordImage'
+            'item_id' => $this->model->id,
+            'model_name' => 'ActiveRecordImage'
         ])->one();
 
         //var_dump($imageRecord);die;
@@ -215,8 +215,8 @@ class ImageBehaveTest extends DbTestCase
 
         //Check db record removed
         $imageRecord = Image::find()->where([
-            'itemId' => $this->model->id,
-            'modelName' => 'ActiveRecordImage'
+            'item_id' => $this->model->id,
+            'model_name' => 'ActiveRecordImage'
         ])->one();
 
         $this->assertTrue($imageRecord == NULL);
