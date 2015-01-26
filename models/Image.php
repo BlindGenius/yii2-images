@@ -12,9 +12,9 @@
  * @property string $url_alias
  */
 
-namespace circledev\images\models;
+namespace circulon\images\models;
 
-use circledev\images\ModuleTrait;
+use circulon\images\ModuleTrait;
 
 use yii\base\Exception;
 use yii\helpers\Url;

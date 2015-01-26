@@ -6,11 +6,11 @@
  * Time: 16:58
  */
 
-namespace circledev\images\behaviors;
+namespace circulon\images\behaviors;
 
-use circledev\images\models\Image;
-use circledev\images\models\PlaceHolder;
-use circledev\images\ModuleTrait;
+use circulon\images\models\Image;
+use circulon\images\models\PlaceHolder;
+use circulon\images\ModuleTrait;
 
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
@@ -80,7 +80,7 @@ class ImageBehavior extends Behavior
         }
 
         if($this->modelClass === null) {
-            $image = new \circledev\images\models\Image;
+            $image = new \circulon\images\models\Image;
         }else{
             $image = new ${$this->modelClass}();
         }
@@ -106,7 +106,7 @@ class ImageBehavior extends Behavior
 
         //If main image not exists
         if(
-            is_object($img) && get_class($img)=='circledev\images\models\PlaceHolder'
+            is_object($img) && get_class($img)=='circulon\images\models\PlaceHolder'
             or
             $img == null
             or

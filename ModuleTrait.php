@@ -6,19 +6,19 @@
  * Time: 0:20
  */
 
-namespace circledev\images;
+namespace circulon\images;
 
 use yii\base\Exception;
 
 trait ModuleTrait
 {
     /**
-     * @var null|\circledev\images\Module
+     * @var null|\circulon\images\Module
      */
     private $_module;
 
     /**
-     * @return null|\circledev\images\Module
+     * @return null|\circulon\images\Module
      */
     protected function getModule()
     {

@@ -6,11 +6,11 @@
  * Time: 15:35
  */
 
-namespace circledev\images\controllers;
+namespace circulon\images\controllers;
 
 use yii\web\Controller;
-use circledev\images\models\Image;
-use circledev\images\ModuleTrait;
+use circulon\images\models\Image;
+use circulon\images\ModuleTrait;
 
 class ImagesController extends Controller
 {
