@@ -1,7 +1,7 @@
 {
     "name": "circledev/yii2-images",
     "description": "yii2 images module for storing images",
-    "keywords": ["yii2", "images", "store", "images store", "yii2-images", "Costa Rico"],
+    "keywords": ["yii2", "images", "store", "images store", "yii2-images", "Kieren Eaton"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
 
@@ -11,7 +11,7 @@
             "email": "circledev@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "yiisoft/yii2": "*",
         "abeautifulsite/simpleimage": "*"
