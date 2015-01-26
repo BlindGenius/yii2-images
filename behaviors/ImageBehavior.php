@@ -15,6 +15,7 @@ use circledev\images\ModuleTrait;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\helpers\BaseFileHelper;
+use yii\web\UploadedFile;
 
 class ImageBehavior extends Behavior
 {
@@ -32,29 +33,36 @@ class ImageBehavior extends Behavior
      *
      * Method copies image file to module store and creates db record.
      *
-     * @param $absolutePath
-     * @param bool $isFirst
+     * @param $newImage
+     * @param bool $isMain
      * @return bool|Image
      * @throws \Exception
      */
-    public function attachImage($absolutePath, $isMain = false)
+    public function attachImage($newImage, $isMain = false)
     {
-        if(!preg_match('#http#', $absolutePath)){
-            if (!file_exists($absolutePath)) {
-                throw new \Exception('File not exist! :'.$absolutePath);
-            }
-        }else{
-            //nothing
+        $pictureFileName = '';
+
+        if ($newImage instanceof UploadedFile) {
+          $nameParts = explode('.',$newImage->name);
+
+          $pictureFileName = substr(sha1(microtime(true) . $newImage->name), 4, 12);
+          $pictureFileName .= (isset($nameParts[1])) ? '.' . $nameParts[1] : '';
+        } else {
+
+          if(!preg_match('#http#', $newImage)){
+              if (!file_exists($newImage)) {
+                  throw new \Exception('File not exist! :'.$newImage);
+              }
+          } else {
+              //nothing
+          }
+          $pictureFileName = substr(sha1(microtime(true) . $newImage), 4, 12). '.' . pathinfo($newImage, PATHINFO_EXTENSION);
         }
 
         if (!$this->owner->id) {
             throw new \Exception('Owner must have id when you attach image!');
         }
 
-        $pictureFileName =
-            substr(md5(microtime(true) . $absolutePath), 4, 6)
-            . '.' .
-            pathinfo($absolutePath, PATHINFO_EXTENSION);
         $pictureSubDir = $this->getModule()->getModelSubDir($this->owner);
         $storePath = $this->getModule()->getStorePath($this->owner);
 
@@ -265,7 +273,7 @@ class ImageBehavior extends Behavior
             }
 
         } else {
-            return substr(md5(microtime()), 0, 10);
+            return substr(sha1(microtime()), 3, 10);
         }
     }
 
