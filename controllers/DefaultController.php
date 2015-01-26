@@ -1,6 +1,6 @@
 <?php
 
-namespace circledev\images\controllers;
+namespace circulon\images\controllers;
 
 use yii\web\Controller;
 

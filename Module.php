@@ -1,6 +1,6 @@
 <?php
 
-namespace circledev\images;
+namespace circulon\images;
 
 use yii\base\Module as BaseModule;
 use yii\base\Exception;
@@ -13,7 +13,7 @@ class Module extends BaseModule
 
     public $graphicsLibrary = 'GD';
 
-    public $controllerNamespace = 'circledev\images\controllers';
+    public $controllerNamespace = 'circulon\images\controllers';
 
     public $placeHolderPath;
 
@@ -33,7 +33,7 @@ class Module extends BaseModule
 
 
         //Lets get image
-        $image = \circledev\images\models\Image::find()
+        $image = \circulon\images\models\Image::find()
             ->where([
                 'model_name' => $modelName,
                 'item_id' => $itemId,

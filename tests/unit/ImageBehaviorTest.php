@@ -5,13 +5,13 @@ use Yii;
 use yii\codeception\DbTestCase;
 use yii\codeception\TestCase;
 use Codeception\Util\Stub;
-use circledev\images\behaviors\ImageBehavior;
-use circledev\images\models\Image;
+use circulon\images\behaviors\ImageBehavior;
+use circulon\images\models\Image;
 use yii\db\Connection;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use org\bovigo\vfs\vfsStream;
-use circledev\images\controllers\ImagesController;
+use circulon\images\controllers\ImagesController;
 
 use Codeception\Util\Debug;
 
@@ -52,7 +52,7 @@ class ImageBehaviorTest extends DbTestCase
             ],
             'modules' => [
                 'yii2images' => [
-                    'class' => 'circledev\images\Module',
+                    'class' => 'circulon\images\Module',
 
                 ],
             ],
@@ -169,7 +169,7 @@ class ImageBehaviorTest extends DbTestCase
         //Check one image
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'circledev\images\models\Image');
+        $this->assertTrue(get_class($image) == 'circulon\images\models\Image');
 
         //Check several images
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
@@ -177,7 +177,7 @@ class ImageBehaviorTest extends DbTestCase
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
 
         $image = $this->model->getImage();
-        $this->assertTrue(get_class($image) == 'circledev\images\models\Image');
+        $this->assertTrue(get_class($image) == 'circulon\images\models\Image');
 
         //Check is it first image main
         $this->assertTrue($image->isMain == 1);

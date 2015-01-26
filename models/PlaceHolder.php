@@ -9,7 +9,7 @@
  * override methods
  */
 
-namespace circledev\images\models;
+namespace circulon\images\models;
 
 use \yii\base\Exception;
 
