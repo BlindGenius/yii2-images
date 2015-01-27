@@ -27,28 +27,29 @@ class ImageBehavior extends Behavior
     /**
      * @var ActiveRecord|null Model class, which will be used for storing image data in db, if not set default class(models/Image) will be used
      */
-    public $modelClass = null;
+    public $modelClass = '\circulon\images\models\Image';
 
     /**
      *
      * Method copies image file to module store and creates db record.
      *
-     * @param $newImage
+     * @param string|UploadedFile $newImage
      * @param bool $isMain
      * @return bool|Image
      * @throws \Exception
      */
     public function attachImage($newImage, $isMain = false)
     {
+        if (!$this->owner->id) {
+            throw new \Exception('Owner must have id when you attach image!');
+        }
+
         $pictureFileName = '';
 
         if ($newImage instanceof UploadedFile) {
-          $nameParts = explode('.',$newImage->name);
-
-          $pictureFileName = substr(sha1(microtime(true) . $newImage->name), 4, 12);
-          $pictureFileName .= (isset($nameParts[1])) ? '.' . $nameParts[1] : '';
+          $sourcePath = $newImage->tempName;
+          $imageExt = $newImage->extension;
         } else {
-
           if(!preg_match('#http#', $newImage)){
               if (!file_exists($newImage)) {
                   throw new \Exception('File not exist! :'.$newImage);
@@ -56,38 +57,36 @@ class ImageBehavior extends Behavior
           } else {
               //nothing
           }
-          $pictureFileName = substr(sha1(microtime(true) . $newImage), 4, 12). '.' . pathinfo($newImage, PATHINFO_EXTENSION);
+          $sourcePath = $newImage;
+          $imageExt = pathinfo($newImage, PATHINFO_EXTENSION);
         }
 
-        if (!$this->owner->id) {
-            throw new \Exception('Owner must have id when you attach image!');
+        $pictureFileName = substr(sha1(microtime(true) . $sourcePath), 4, 12);
+        $pictureFileName .= '.'.$imageExt;
+
+        if (!file_exists($sourcePath)) {
+            throw new \Exception('Source file doesnt exist! ' . $sourcePath . ' to ' . $newAbsolutePath);
         }
 
         $pictureSubDir = $this->getModule()->getModelSubDir($this->owner);
         $storePath = $this->getModule()->getStorePath($this->owner);
 
-        $newAbsolutePath = $storePath .
+        $destPath = $storePath .
             DIRECTORY_SEPARATOR . $pictureSubDir .
             DIRECTORY_SEPARATOR . $pictureFileName;
 
         BaseFileHelper::createDirectory($storePath . DIRECTORY_SEPARATOR . $pictureSubDir,
             0775, true);
 
-        copy($absolutePath, $newAbsolutePath);
-
-        if (!file_exists($absolutePath)) {
-            throw new \Exception('Cant copy file! ' . $absolutePath . ' to ' . $newAbsolutePath);
+        if (!copy($sourcePath, $destPath)) {
+            throw new \Exception('Failed to copy file from ' . $sourcePath . ' to ' . $destPath);
         }
 
-        if($this->modelClass === null) {
-            $image = new \circulon\images\models\Image;
-        }else{
-            $image = new ${$this->modelClass}();
-        }
+        $image = new $this->modelClass;
+
         $image->item_id = $this->owner->id;
         $image->file_path = $pictureSubDir . '/' . $pictureFileName;
         $image->model_name = $this->getModule()->getShortClass($this->owner);
-
 
         $image->url_alias = $this->getAlias($image);
 
@@ -271,9 +270,8 @@ class ImageBehavior extends Behavior
             } else {
                 return $string;
             }
-
         } else {
-            return substr(sha1(microtime()), 3, 10);
+            return substr(sha1(microtime()), 3, 20);
         }
     }
 
