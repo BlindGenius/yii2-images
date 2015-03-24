@@ -250,7 +250,7 @@ class Image extends ActiveRecord
 
     protected function getSubDur()
     {
-        return $this->model_name. 's/' . $this->model_name.$this->item_id;
+        return \yii\helpers\Inflector::pluralize($this->model_name).'/'.$this->model_name.$this->item_id;
     }
 
 
