@@ -236,11 +236,7 @@ class Image extends ActiveRecord
 
     public function setMain($isMain = true)
     {
-        if($isMain){
-            $this->is_main = 1;
-        }else{
-            $this->is_main = 0;
-        }
+        $this->is_main = $isMain;
     }
 
     protected function getSubDur()
