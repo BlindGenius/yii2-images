@@ -39,12 +39,6 @@ class Module extends BaseModule
                 'item_id' => $itemId,
                 'url_alias' => $alias
             ])
-            /*     ->where('modelName = :modelName AND itemId = :itemId AND urlAlias = :alias',
-                     [
-                         ':modelName' => $modelName,
-                         ':itemId' => $itemId,
-                         ':alias' => $alias
-                     ])*/
             ->one();
         if(!$image){
             return $this->getPlaceHolder();
