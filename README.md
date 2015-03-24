@@ -10,7 +10,7 @@ Installation
     <pre>
        {
             "require": {
-                "circledev/yii2-images": "dev-master"
+                "circulon/yii2-images": "dev-master"
             }
        }
     </pre>
@@ -21,14 +21,14 @@ Installation
 
 3. run migration
     <pre>
-    php yii migrate/up --migrationPath=@vendor/circledev/yii2-images/migrations
+    php yii migrate/up --migrationPath=@vendor/circulon/yii2-images/migrations
     </pre>
 
 4. setup module
     ```php
     'modules' => [
             'images' => [
-                'class' => 'circledev\images\Module',
+                'class' => 'circulon\images\Module',
                 //be sure, that permissions ok 
                 //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
                 'imagesStorePath' => 'images/store', //path to origin images
@@ -47,7 +47,7 @@ Installation
         {
             return [
                 'image' => [
-                    'class' => 'circledev\images\behaviors\ImageBehavior',
+                    'class' => 'circlulon\images\behaviors\ImageBehavior',
                 ]
             ];
         }
