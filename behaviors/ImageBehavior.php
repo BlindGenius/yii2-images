@@ -182,8 +182,8 @@ class ImageBehavior extends Behavior
     {
         $query = $this->imageQuery();
         $imageRecords = $query->all();
-        if(!$imageRecords){
-            return [$this->getModule()->getPlaceHolder()];
+        if((empty($imageRecords)) && ($this->getModule()->getPlaceHolder())) {
+            $imageRecords[] = $this->getModule()->getPlaceHolder();
         }
 
         return $imageRecords;
