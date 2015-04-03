@@ -1,57 +1,78 @@
 yii2-images
 ===========
-Yii2-images is yii2 module that allows to attach images to any of your models, next you can get images in any sizes, also you can set main image of images set.
+Yii2-images is yii2 module that allows attachment of images to any model, you can also retrieve images in any sizes. 
+Additionally you can set main (default) image of a group of images.
 
 Module supports Imagick and GD libraries, you can set up it in module settings.
 
 Installation
 -------------
-1. Add Yii2-user to the require section of your composer.json file:
-    <pre>
-       {
-            "require": {
-                "circulon/yii2-images": "dev-master"
-            }
-       }
-    </pre>
-2. run 
-    <pre>
-      php composer.phar update
-    </pre>
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-3. run migration
-    <pre>
-    php yii migrate/up --migrationPath=@vendor/circulon/yii2-images/migrations
-    </pre>
+Either run
 
-4. setup module
-    ```php
+``
+php composer.phar require --prefer-dist circulon/yii2-images "*"
+``
+
+or add
+
+``
+"circulon/yii2-images": "*"
+``
+
+to the require section of your `composer.json` file.
+
+Run the migration
+```
+php yii migrate/up --migrationPath=@vendor/circulon/yii2-images/migrations
+```
+
+Setup
+-----
+add the module setup to your app config 
+ 
     'modules' => [
-            'images' => [
-                'class' => 'circulon\images\Module',
-                //be sure, that permissions ok 
-                //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
-                'imagesStorePath' => 'images/store', //path to origin images
-                'imagesCachePath' => 'images/cache', //path to resized copies
-                'graphicsLibrary' => 'GD', //but really its better to use 'Imagick' 
-                'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
-                //Class name to handle image storage in db
-                'className' => 'models/Image'
-            ],
+    	...
+		'images' => [
+        	'class' => 'circulon\images\Module',
+            // be sure, that permissions ok 
+            // if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
+            'imagesStorePath' => 'images/store', //path to origin images
+            'imagesCachePath' => 'images/cache', //path to resized copies
+            'graphicsLibrary' => 'GD', //but really its better to use 'Imagick' 
+            'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
         ],
-    ```
+    ],
 
-5. attach behaviour to your model (be sure that your model has "id" property)
-    ```php
-        public function behaviors()
-        {
-            return [
-                'image' => [
-                    'class' => 'circlulon\images\behaviors\ImageBehavior',
-                ]
-            ];
-        }
-    ```
+
+attach the behavior to your model (be sure that your model has "id" property)
+ 
+ 	public function behaviors()
+    {
+    	return [
+        	'image' => [
+            	'class' => 'circlulon\images\behaviors\ImageBehavior',
+            ]
+        ];
+    }
+    
+ 
+add the action to the required controllers
+	
+	public function actions()
+	{
+    	return [
+        	'image' => [
+          		'class' => 'circulon\images\actions\ImageAction',
+				// all the models to be searched by this controller.
+				// Can be fully qualified namespace or alias
+          		'models' => ['User']  
+        ]
+    ];
+}
+   
+    
 
 Usage instance:
 -------------
