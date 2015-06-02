@@ -12,6 +12,9 @@ use yii\base\Action;
 class ImageAction extends Action
 {
 
+    /**
+     * @var models array
+     */
     public $models = [];
 
     /**
