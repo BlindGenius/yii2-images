@@ -43,15 +43,10 @@ class Image extends ActiveRecord
         return $ext;
     }
 
-    public function getUrl($size = false, $route = null)
+    public function getUrl($size = false )
     {
         $urlSize = ($size) ? '_'.$size : '';
-        if (empty($route)) {
-          $controller = \Yii::$app->controller;
-          $route = (!empty($controller->module))? $controller->module : '';
-          $route .= $controller->id;
-        }
-        $url = Url::toRoute([$route.'/image','id'=>$this->item_id,'ref'=>$this->url_alias.$urlSize]);
+        $url = Url::toRoute([\Yii::$app->controller->id.'/image', 'id'=>$this->item_id, 'ref'=>$this->url_alias.$urlSize]);
         return $url;
     }
 
