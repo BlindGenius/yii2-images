@@ -35,13 +35,13 @@ class PlaceHolder extends Image
 
     public function __construct()
     {
-        $this->filePath =basename(Yii::getAlias($this->getModule()->placeHolderPath)) ;
+        $this->filePath =basename(Yii::getAlias($this->getModule()->placeholderPath)) ;
     }
 
     public function getPathToOrigin()
     {
 
-        $url = \Yii::getAlias($this->getModule()->placeHolderPath);
+        $url = \Yii::getAlias($this->getModule()->placeholderPath);
         if (!$url) {
             throw new Exception('PlaceHolder image must have path setting!!!');
         }

@@ -15,7 +15,7 @@ class Module extends BaseModule
 
     public $controllerNamespace = 'circulon\images\controllers';
 
-    public $placeHolderPath;
+    public $placeholderPath;
 
     public $waterMark = false;
 
@@ -161,7 +161,7 @@ class Module extends BaseModule
 
     public function getPlaceHolder(){
 
-        if($this->placeHolderPath){
+        if($this->placeholderPath){
             return new PlaceHolder();
         }else{
             return null;
