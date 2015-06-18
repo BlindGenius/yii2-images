@@ -132,8 +132,8 @@ class ImageBehaviorTest extends DbTestCase
         ])->one();
 
         //var_dump($imageRecord);die;
-        $this->assertTrue($imageRecord->isMain == 1);
-        $this->assertTrue($imageRecord->filePath == 'ActiveRecordImages/ActiveRecordImage1/' . $file);
+        $this->assertTrue($imageRecord->is_main == 1);
+        $this->assertTrue($imageRecord->file_path == 'ActiveRecordImages/ActiveRecordImage1/' . $file);
 
     }
 
@@ -157,7 +157,7 @@ class ImageBehaviorTest extends DbTestCase
 
 
         //Check is it first image main
-        $this->assertTrue($images[0]->isMain == 1);
+        $this->assertTrue($images[0]->is_main == 1);
 
     }
 
@@ -180,7 +180,7 @@ class ImageBehaviorTest extends DbTestCase
         $this->assertTrue(get_class($image) == 'circulon\images\models\Image');
 
         //Check is it first image main
-        $this->assertTrue($image->isMain == 1);
+        $this->assertTrue($image->is_main == 1);
 
     }
 
@@ -240,7 +240,7 @@ class ImageBehaviorTest extends DbTestCase
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
         $img = $this->model->getImage();
 
-        $this->assertTrue($img->isMain == 1);
+        $this->assertTrue($img->is_main == 1);
 
         //Remember main image id
         $oldMainImageId = $img->id;
@@ -252,7 +252,7 @@ class ImageBehaviorTest extends DbTestCase
 
         $images = $this->model->getImages();
         foreach ($images as $i) {
-            if ($i->isMain == 0) {
+            if ($i->is_main == 0) {
                 $this->assertTrue($i->id != $newMainImage->id);
             } else {
                 $this->assertTrue($i->id == $newMainImage->id);
