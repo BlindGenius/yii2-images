@@ -9,7 +9,7 @@
 namespace circulon\images\behaviors;
 
 use circulon\images\models\Image;
-use circulon\images\models\PlaceHolder;
+use circulon\images\models\Placeholder;
 use circulon\images\ModuleTrait;
 
 use yii\base\Behavior;
@@ -105,7 +105,7 @@ class ImageBehavior extends Behavior
 
         //If main image not exists
         if(
-            is_object($img) && get_class($img)=='circulon\images\models\PlaceHolder'
+            is_object($img) && get_class($img)=='circulon\images\models\Placeholder'
             or
             $img == null
             or
@@ -182,8 +182,8 @@ class ImageBehavior extends Behavior
     {
         $query = $this->imageQuery();
         $imageRecords = $query->all();
-        if((empty($imageRecords)) && ($this->getModule()->getPlaceHolder())) {
-            $imageRecords[] = $this->getModule()->getPlaceHolder();
+        if((empty($imageRecords)) && ($this->getModule()->getPlaceholder())) {
+            $imageRecords[] = $this->getModule()->getPlaceholder();
         }
 
         return $imageRecords;
@@ -201,7 +201,7 @@ class ImageBehavior extends Behavior
         $img = $query->one();
 
         if(!$img){
-            return $this->getModule()->getPlaceHolder();
+            return $this->getModule()->getPlaceholder();
         }
 
         return $img;
