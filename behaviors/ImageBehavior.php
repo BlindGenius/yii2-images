@@ -22,6 +22,11 @@ class ImageBehavior extends Behavior
 
     use ModuleTrait;
 
+    /**
+     * @var string
+     */
+    public $idAttribute = 'id';
+
     public $createAliasMethod = false;
 
     /**
@@ -40,8 +45,8 @@ class ImageBehavior extends Behavior
      */
     public function attachImage($newImage, $isMain = false)
     {
-        if (!$this->owner->id) {
-            throw new \Exception('Owner must have id when you attach image!');
+        if (!$this->owner->{$this->idAttribute}) {
+            throw new \Exception($this->owner->classname().' must have an is when you attach image!');
         }
 
         $pictureFileName = '';
@@ -84,7 +89,7 @@ class ImageBehavior extends Behavior
 
         $image = new $this->modelClass;
 
-        $image->item_id = $this->owner->id;
+        $image->item_id = $this->owner->{$this->idAttribute};
         $image->file_path = $pictureSubDir . '/' . $pictureFileName;
         $image->model_name = $this->getModule()->getShortClass($this->owner);
 
@@ -124,7 +129,7 @@ class ImageBehavior extends Behavior
      */
     public function setMainImage($img)
     {
-        if ($this->owner->id != $img->item_id) {
+        if ($this->owner->{$this->idAttribute} != $img->item_id) {
             throw new \Exception('Image must belong to this model');
         }
         $counter = 1;
@@ -247,7 +252,7 @@ class ImageBehavior extends Behavior
         $query = Image::find()
           ->where(
           [
-            'item_id' => $this->owner->id,
+            'item_id' => $this->owner->{$this->idAttribute},
             'model_name' => $this->getModule()->getShortClass($this->owner)
           ])
           ->orderBy(['is_main' => SORT_DESC]);
