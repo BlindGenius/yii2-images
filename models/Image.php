@@ -74,9 +74,9 @@ class Image extends ActiveRecord
         return $filePath;
     }
 
-    public function getContent($size = false)
+    public function getContent($size = false, $base64 = false)
     {
-        return file_get_contents($this->getPath($size));
+        return ($base64) ? base64_encode(file_get_contents($this->getPath($size))) : file_get_contents($this->getPath($size));
     }
 
     public function getPathToOrigin()
