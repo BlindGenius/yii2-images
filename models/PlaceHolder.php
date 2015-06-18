@@ -18,7 +18,7 @@ use \yii\base\Exception;
  */
 
 
-class PlaceHolder extends Image
+class Placeholder extends Image
 {
     private $modelName = '';
     private $itemId = '';
@@ -28,7 +28,7 @@ class PlaceHolder extends Image
     /*  public function getUrl($size = false){
           $url = $this->getModule()->placeHolderUrl;
           if(!$url){
-              throw new \Exception('PlaceHolder image must have url setting!!!');
+              throw new \Exception('Placeholder image must have url setting!!!');
           }
           return $url;
       }*/
@@ -43,7 +43,7 @@ class PlaceHolder extends Image
 
         $url = \Yii::getAlias($this->getModule()->placeholderPath);
         if (!$url) {
-            throw new Exception('PlaceHolder image must have path setting!!!');
+            throw new Exception('Placeholder image must have path setting!!!');
         }
         return $url;
     }

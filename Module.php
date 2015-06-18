@@ -41,7 +41,7 @@ class Module extends BaseModule
             ])
             ->one();
         if(!$image){
-            return $this->getPlaceHolder();
+            return $this->getPlaceholder();
         }
 
         return $image;
@@ -159,10 +159,10 @@ class Module extends BaseModule
         // custom initialization code goes here
     }
 
-    public function getPlaceHolder(){
+    public function getPlaceholder(){
 
         if($this->placeholderPath){
-            return new PlaceHolder();
+            return new Placeholder();
         }else{
             return null;
         }
