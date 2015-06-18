@@ -5,6 +5,8 @@ namespace circulon\images;
 use yii\base\Module as BaseModule;
 use yii\base\Exception;
 
+use circulon\images\models\Placeholder;
+
 class Module extends BaseModule
 {
     public $imagesStorePath = '@app/web/store';
@@ -12,8 +14,6 @@ class Module extends BaseModule
     public $imagesCachePath = '@app/web/imgCache';
 
     public $graphicsLibrary = 'GD';
-
-    public $controllerNamespace = 'circulon\images\controllers';
 
     public $placeholderPath;
 
@@ -30,7 +30,6 @@ class Module extends BaseModule
 
         $itemId = preg_replace('/[^0-9]+/', '', $item);
         $modelName = preg_replace('/[0-9]+/', '', $item);
-
 
         //Lets get image
         $image = \circulon\images\models\Image::find()
@@ -56,7 +55,6 @@ class Module extends BaseModule
     public function getCachePath()
     {
         return \Yii::getAlias($this->imagesCachePath);
-
     }
 
     public function getModelSubDir($model)
@@ -66,7 +64,6 @@ class Module extends BaseModule
 
         return $modelDir;
     }
-
 
     public function getShortClass($obj)
     {
@@ -78,7 +75,6 @@ class Module extends BaseModule
 
         return $className;
     }
-
 
     /**
      *
@@ -155,7 +151,7 @@ class Module extends BaseModule
             or
             $this->imagesCachePath == '@app'
         )
-            throw new Exception('Setup imagesStorePath and imagesCachePath images module properties!!!');
+        throw new Exception('Setup imagesStorePath and imagesCachePath images module properties!!!');
         // custom initialization code goes here
     }
 
