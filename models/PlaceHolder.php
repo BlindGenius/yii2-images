@@ -11,6 +11,7 @@
 
 namespace circulon\images\models;
 
+use yii;
 use \yii\base\Exception;
 
 /**
@@ -41,7 +42,7 @@ class Placeholder extends Image
     public function getPathToOrigin()
     {
 
-        $url = \Yii::getAlias($this->getModule()->placeholderPath);
+        $url = Yii::getAlias($this->getModule()->placeholderPath);
         if (!$url) {
             throw new Exception('Placeholder image must have path setting!!!');
         }
