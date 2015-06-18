@@ -21,9 +21,9 @@ use \yii\base\Exception;
 
 class Placeholder extends Image
 {
-    public $filePath = 'placeHolder.png';
     private $model_name = '';
     private $item_id = '';
+    public $file_path = 'placeholder.png';
     public $url_alias = 'placeholder';
 
     /*  public function getUrl($size = false){
@@ -36,7 +36,7 @@ class Placeholder extends Image
 
     public function __construct()
     {
-        $this->filePath =basename(Yii::getAlias($this->getModule()->placeholderPath)) ;
+        $this->file_path = basename(Yii::getAlias($this->getModule()->placeholderPath)) ;
     }
 
     public function getPathToOrigin()
