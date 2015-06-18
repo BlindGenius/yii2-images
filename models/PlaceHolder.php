@@ -24,7 +24,7 @@ class Placeholder extends Image
     private $modelName = '';
     private $itemId = '';
     public $filePath = 'placeHolder.png';
-    public $urlAlias = 'placeHolder';
+    public $url_alias = 'placeholder';
 
     /*  public function getUrl($size = false){
           $url = $this->getModule()->placeHolderUrl;

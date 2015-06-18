@@ -99,11 +99,11 @@ class ImageTest extends TestCase
         $ext = pathinfo($img->getPathToOrigin(), PATHINFO_EXTENSION);
 
         $baseUrl = '/app/web/index-test.php/ricoStore/images/image-by-item-and-alias?item=ActiveRecordImage1&dirtyAlias=';
-        $this->assertEquals($img->getUrl(), $baseUrl.$img->urlAlias.'.'.$ext);
+        $this->assertEquals($img->getUrl(), $baseUrl.$img->url_alias.'.'.$ext);
 
-        $this->assertEquals($img->getUrl('x100'), $baseUrl.$img->urlAlias.'_x100.'.$ext);
+        $this->assertEquals($img->getUrl('x100'), $baseUrl.$img->url_alias.'_x100.'.$ext);
         $this->assertEquals($img->getUrl('100x400'),
-            $baseUrl.$img->urlAlias.'_100x400.'.$ext);
+            $baseUrl.$img->url_alias.'_100x400.'.$ext);
     }
 
     public function testGetPath()
@@ -114,7 +114,7 @@ class ImageTest extends TestCase
         //var_dump($image->getPath());die;
 
         $expectedFile = Yii::getAlias('@app').'/tests/unit/data/imgCache/ActiveRecordImages/ActiveRecordImage1/'.
-            $image->urlAlias.'.jpg';
+            $image->url_alias.'.jpg';
         $this->assertEquals($image->getPath(),
             $expectedFile);
 
@@ -122,7 +122,7 @@ class ImageTest extends TestCase
 
 
         $expectedFile = Yii::getAlias('@app').'/tests/unit/data/imgCache/ActiveRecordImages/ActiveRecordImage1/'.
-            $image->urlAlias.'_200x100.jpg';
+            $image->url_alias.'_200x100.jpg';
         $this->assertEquals($image->getPath('200x100'),
             $expectedFile);
 

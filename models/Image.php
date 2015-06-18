@@ -130,7 +130,7 @@ class Image extends ActiveRecord
     public function createVersion($imagePath, $sizeString = false)
     {
         if(strlen($this->url_alias)<1){
-            throw new \Exception('Image without urlAlias!');
+            throw new \Exception('Image without url alias!');
         }
 
         $cachePath = $this->getModule()->getCachePath();
