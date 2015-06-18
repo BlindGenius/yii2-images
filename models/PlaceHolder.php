@@ -26,14 +26,6 @@ class Placeholder extends Image
     public $file_path = 'placeholder.png';
     public $url_alias = 'placeholder';
 
-    /*  public function getUrl($size = false){
-          $url = $this->getModule()->placeHolderUrl;
-          if(!$url){
-              throw new \Exception('Placeholder image must have url setting!!!');
-          }
-          return $url;
-      }*/
-
     public function __construct()
     {
         $this->file_path = basename(Yii::getAlias($this->getModule()->placeholderPath)) ;
@@ -50,11 +42,11 @@ class Placeholder extends Image
     }
 
     protected  function getSubDur(){
-        return 'placeHolder';
+        return 'placeholder';
     }
 
     public function setMain($isMain = true){
-        throw new Exception('You must not set placeHolder as main image!!!');
+        throw new Exception('You must not set placeholder as main image!!!');
     }
 
 }
