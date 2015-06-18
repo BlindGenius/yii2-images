@@ -273,8 +273,8 @@ class ImageBehaviorTest extends DbTestCase
         $this->model->attachImage(__DIR__ . '/data/testPicture.jpg');
         $anotherImage =  $anotherModel->attachImage(__DIR__ . '/data/testPicture.jpg');
 
-        $this->assertTrue($anotherImage->modelName == 'ActiveRecordImage2');
-        $this->assertTrue($img->modelName == 'ActiveRecordImage');
+        $this->assertTrue($anotherImage->model_name == 'ActiveRecordImage2');
+        $this->assertTrue($img->model_name == 'ActiveRecordImage');
 
         $this->assertTrue(count($anotherModel->getImages())==1);
         $this->assertTrue(count($this->model->getImages())>1);

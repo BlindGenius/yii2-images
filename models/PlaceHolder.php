@@ -21,9 +21,9 @@ use \yii\base\Exception;
 
 class Placeholder extends Image
 {
-    private $modelName = '';
-    private $itemId = '';
     public $filePath = 'placeHolder.png';
+    private $model_name = '';
+    private $item_id = '';
     public $url_alias = 'placeholder';
 
     /*  public function getUrl($size = false){
