@@ -45,28 +45,51 @@ add the module setup to your app config
         ],
     ],
 
+optionally add the url route to the UrlManager
 
-attach the behavior to your model (be sure that your model has "id" property)
+  NOTE : you may need to add a sililar rule to your module/s that have attached actions 
+    
+    'components' => [
+        ...
+        'urlManager' => [
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+              ...
+             
+              '<controller:\w+>/<action:\w+>/<id:\d+>/<ref:[a-z0-9_-]+>' => '<controller>/<action>',
+              
+              ...
+           ],
+        ],
+        ...
+    ]
+
+attach the behavior to your model/s 
  
  	public function behaviors()
-    {
+  {
     	return [
         	'image' => [
             	'class' => 'circlulon\images\behaviors\ImageBehavior',
-            ]
-        ];
-    }
+              'idAttribute' => 'id' // set the models id column , default : 'id'
+          ]
+      ];
+  }
     
  
 add the action to the required controllers
+  
+  NOTE : it is recommended to add a route to your url manager config 
 	
 	public function actions()
 	{
     	return [
         	'image' => [
           		'class' => 'circulon\images\actions\ImageAction',
-				// all the models to be searched by this controller.
-				// Can be fully qualified namespace or alias
+          		
+              // all the models to be searched by this controller action.
+              // Can be fully qualified namespace or alias
           		'models' => ['User']  
         ]
     ];
@@ -74,7 +97,7 @@ add the action to the required controllers
    
     
 
-Usage instance:
+Usage 
 -------------
 
 ```php
@@ -102,7 +125,7 @@ Usage instance:
         echo $img->getUrl('200x300');
     }
     
-    //Returns main model image
+    // get image model 
     $image = $model->getImage();
     
     if($image){
@@ -114,8 +137,20 @@ Usage instance:
         
         //will remove this image and all cache files
         $model->removeImage($image);
+        
+        // get the content of the image
+        $model->getContent();
     }
 
+    
+
+```
+
+with an img tag 
+
+```html
+    <!-- create a thumbnail sized image with base64 encoding for fast display -->
+    <img src="data:image/png;base64,<?= $user->getImage()->getContent('50x50', true) ?>" alt="">
 ```
 
 Details
@@ -126,7 +161,7 @@ Details
     
     $model->removeImages(); //returns array with images
     
-    //If there is no images for model, above methods will return Placeholder images or null
+    //If there is no images for model, above methods will return Placeholder image or null
     //If you want placeholder set up it in module configuration (see documentation)
     
     ```
@@ -137,7 +172,7 @@ Details
     $model->removeImages(); //will remove all images of this model
     ```
 
-3. Set main image
+3. Set main/default image
     ```php
     $model->attachImage($absolutePathToImage, true); //will attach image and make it main
     
@@ -152,7 +187,14 @@ Details
     ```php
     $image = $model->getImage();
     $sizes = $image->getSizesWhen('x500');
-    echo '&lt;img width="'.$sizes['width'].'" height="'.$sizes['height'].'" src="'.$image->getUrl('x500').'" />';
+    
+    // the url is relative to the current controller eg /site/image/2/876293878623-x500
+    echo '<img width="'.$sizes['width'].'" height="'.$sizes['height'].'" src="'.$image->getUrl('x500').'" />';
+    
+    // using a different controller / module+controller 
+    //  example generated url /product/image/2/876293878623-x500
+    echo '<img width="'.$sizes['width'].'" height="'.$sizes['height'].'" src="'.$image->getUrl('x500','product').'" />';
+    
     ```
 
 5. Get original image
@@ -161,3 +203,10 @@ Details
     echo $img->getPathToOrigin();
     ```
 
+6. Get raw image content or encoded content
+    ```php
+    $image = $model->getImage();
+    $content = $model->getContent();
+    
+    // output base64 encoded thumbnail with bootstrap3 css
+    echo '<img class="img-responsive img-rounded" src="data:image/png;base64,'.$user->getImage()->getContent('50x50', true).'" alt="">';
