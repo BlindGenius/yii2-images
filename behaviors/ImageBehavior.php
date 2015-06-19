@@ -131,26 +131,20 @@ class ImageBehavior extends Behavior
         if ($this->owner->{$this->idAttribute} != $img->item_id) {
             throw new \Exception('Image must belong to this model');
         }
+
         $counter = 1;
         /* @var $img Image */
         $img->setMain(true);
         $img->url_alias = $this->getAliasString() . '-' . $counter;
         $img->save();
 
+        // set all other images related to this model and id to NOT be main
+        Image::updateAll(['is_main' => 0], [
+          'and', ['model_name' => $img->model_name,
+            'item_id' => $img->item_id] ,
+          ['not' , ['url_alias' => $img->url_alias]],
 
-        $images = $this->owner->getImages();
-        foreach ($images as $allImg) {
-
-            if ($allImg->id == $img->id) {
-                continue;
-            } else {
-                $counter++;
-            }
-
-            $allImg->setMain(false);
-            $allImg->url_alias = $this->getAliasString() . '-' . $counter;
-            $allImg->save();
-        }
+        ]);
 
         $this->owner->clearImagesCache();
     }
