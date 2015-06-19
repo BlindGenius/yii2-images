@@ -100,7 +100,6 @@ class ImageBehavior extends Behavior
         }
 
         if (count($image->getErrors()) > 0) {
-
             $ar = array_shift($image->getErrors());
 
             unlink($newAbsolutePath);
@@ -108,14 +107,14 @@ class ImageBehavior extends Behavior
         }
         $img = $this->owner->getImage();
 
-        //If main image not exists
+        // If main image not exists
         if(
             is_object($img) && get_class($img)=='circulon\images\models\Placeholder'
             or
             $img == null
             or
             $isMain
-        ){
+        ) {
             $this->setMainImage($image);
         }
 
@@ -156,7 +155,6 @@ class ImageBehavior extends Behavior
         $this->owner->clearImagesCache();
     }
 
-
     /**
      * Clear all images cache (and resized copies)
      * @return bool
@@ -177,7 +175,6 @@ class ImageBehavior extends Behavior
         }
     }
 
-
     /**
      * Returns model images
      * First image alwats must be main image
@@ -193,7 +190,6 @@ class ImageBehavior extends Behavior
 
         return $imageRecords;
     }
-
 
     /**
      * returns main model image
@@ -218,15 +214,12 @@ class ImageBehavior extends Behavior
     public function removeImages()
     {
         $images = $this->owner->getImages();
-        if (count($images) < 1) {
-            return true;
-        } else {
-            foreach ($images as $image) {
-                $this->owner->removeImage($image);
-            }
+        if (count($images) < 1) { return true; }
+
+        foreach ($images as $image) {
+            $this->owner->removeImage($image);
         }
     }
-
 
     /**
      *
@@ -260,8 +253,6 @@ class ImageBehavior extends Behavior
         return $query;
     }
 
-
-
     /** Make string part of image's url
      * @return string
      * @throws \Exception
@@ -293,9 +284,6 @@ class ImageBehavior extends Behavior
 
         return $aliasWords . '-' . intval($imagesCount + 1);
     }
-
-
-
 
 }
 
