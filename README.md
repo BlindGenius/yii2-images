@@ -47,7 +47,7 @@ add the module setup to your app config
 
 optionally add the url route to the UrlManager
 
-  NOTE : you may need to add a sililar rule to your module/s that have attached actions 
+  NOTE : you may need to add a similar rule to your module/s that have attached actions 
     
     'components' => [
         ...
