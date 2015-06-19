@@ -46,7 +46,7 @@ class ImageBehavior extends Behavior
     public function attachImage($newImage, $isMain = false)
     {
         if (!$this->owner->{$this->idAttribute}) {
-            throw new \Exception($this->owner->classname().' must have an is when you attach image!');
+            throw new \Exception($this->owner->classname().' must have an id when you attach image!');
         }
 
         $pictureFileName = '';

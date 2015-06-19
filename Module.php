@@ -60,7 +60,7 @@ class Module extends BaseModule
     public function getModelSubDir($model)
     {
         $modelName = $this->getShortClass($model);
-        $modelDir = \yii\helpers\Inflector::pluralize($modelName).'/'. $modelName . $model->id;
+        $modelDir = \yii\helpers\Inflector::pluralize($modelName).'/'. $modelName . $model->{$model->idAttribute};
 
         return $modelDir;
     }
