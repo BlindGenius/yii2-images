@@ -1,9 +1,16 @@
 yii2-images
 ===========
 Yii2-images is yii2 module that allows attachment of images to any model, you can also retrieve images in any sizes. 
-Additionally you can set main (default) image of a group of images.
+Additionally you can set the main (default) image of a group of images.
 
 Module supports Imagick and GD libraries, you can set up it in module settings.
+
+Features 
+- single action which can be attached to any controller offering cleaner urls per controller
+- optional output of base64 encoded data for use in <img> tags  
+- optimised searching of db for image references per action
+- customisable id attribute
+- Handles UploadedFile classes internally so no need to save uploads first before attaching to model
 
 Installation
 -------------
@@ -47,7 +54,7 @@ add the module setup to your app config
 
 optionally add the url route to the UrlManager
 
-  NOTE : you may need to add a similar rule to your module/s that have attached actions 
+  NOTE : you may need to add a similar rule to your module/s that have this attached action 
     
     'components' => [
         ...
@@ -79,8 +86,6 @@ attach the behavior to your model/s
     
  
 add the action to the required controllers
-  
-  NOTE : it is recommended to add a route to your url manager config 
 	
 	public function actions()
 	{
@@ -88,9 +93,9 @@ add the action to the required controllers
         	'image' => [
           		'class' => 'circulon\images\actions\ImageAction',
           		
-              // all the models to be searched by this controller action.
+              // all the model classes to be searched by this action.
               // Can be fully qualified namespace or alias
-          		'models' => ['User']  
+          		'models' => ['User', ...]  
         ]
     ];
 }
