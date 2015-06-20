@@ -187,15 +187,16 @@ class ImageBehavior extends Behavior
 
     /**
      * returns main model image
-     * @return array|null|ActiveRecord
+     * @return null|Image|Placeholder
      */
-    public function getImage()
+    public function getImage($id = null, $usePlaceholder = true)
     {
         $query = $this->imageQuery();
-        $query->andWhere(['is_main' => true]);
+        $where = (isset($id)) ? ['id' => $id] : ['is_main' => true];
+        $query->andWhere($where);
         $img = $query->one();
 
-        if(!$img){
+        if (!$img && $usePlaceholder) {
             return $this->getModule()->getPlaceholder();
         }
 
@@ -237,8 +238,7 @@ class ImageBehavior extends Behavior
     private function imageQuery()
     {
         $query = Image::find()
-          ->where(
-          [
+          ->where([
             'item_id' => $this->owner->{$this->idAttribute},
             'model_name' => $this->getModule()->getShortClass($this->owner)
           ])
