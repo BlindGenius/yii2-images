@@ -112,13 +112,13 @@ class ImageBehaviorTest extends DbTestCase
 
         //Check if file dir exists
         $this->assertTrue(
-            file_exists(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->id . '/'))
+            file_exists(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->{$this->model->idAttribute} . '/'))
             &&
-            is_dir(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->id . '/'))
+            is_dir(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->{$this->model->idAttribute} . '/'))
         );
 
         //Check file exists
-        $file = scandir(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->id . '/'))[2];
+        $file = scandir(vfsStream::url('root/Store/ActiveRecordImages/ActiveRecordImage' . $this->model->{$this->model->idAttribute} . '/'))[2];
         $this->assertTrue(isset($file));
 
         //Check file extension
@@ -215,7 +215,7 @@ class ImageBehaviorTest extends DbTestCase
 
         //Check db record removed
         $imageRecord = Image::find()->where([
-            'item_id' => $this->model->id,
+            'item_id' => $this->model->{$this->model->idAttribute},
             'model_name' => 'ActiveRecordImage'
         ])->one();
 
