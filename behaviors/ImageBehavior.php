@@ -174,11 +174,11 @@ class ImageBehavior extends Behavior
      * First image alwats must be main image
      * @return array|yii\db\ActiveRecord[]
      */
-    public function getImages()
+    public function getImages($usePlaceholder = true)
     {
         $query = $this->imageQuery();
         $imageRecords = $query->all();
-        if((empty($imageRecords)) && ($this->getModule()->getPlaceholder())) {
+        if((empty($imageRecords)) && ($usePlaceholder) && ($this->getModule()->getPlaceholder())) {
             $imageRecords[] = $this->getModule()->getPlaceholder();
         }
 
