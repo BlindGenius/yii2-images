@@ -74,21 +74,22 @@ optionally add the url route to the UrlManager
 
 attach the behavior to your model/s 
  
- 	public function behaviors()
-  {
+```php
+ 	public function behaviors(){
     	return [
         	'image' => [
             	'class' => 'circlulon\images\behaviors\ImageBehavior',
-              'idAttribute' => 'id' // set the models id column , default : 'id'
-          ]
-      ];
-  }
+              	'idAttribute' => 'id' // set the models id column , default : 'id'
+          	]
+      	];
+  	}
     
+```
  
 add the action to the required controllers
 	
-	public function actions()
-	{
+```php
+	public function actions(){
     	return [
         	'image' => [
           		'class' => 'circulon\images\actions\ImageAction',
@@ -96,9 +97,11 @@ add the action to the required controllers
               // all the model classes to be searched by this action.
               // Can be fully qualified namespace or alias
           		'models' => ['User', ...]  
-        ]
-    ];
-}
+	        ]
+	    ];
+	}
+
+```
    
     
 
