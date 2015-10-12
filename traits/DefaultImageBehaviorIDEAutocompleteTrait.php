@@ -1,5 +1,5 @@
 <?php
-namespace circulon\images\behaviors;
+namespace circulon\images\traits;
 
 /**
  * @method \circulon\images\models\Image attachImage($newImage, $isMain = false)
